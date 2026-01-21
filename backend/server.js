@@ -6,7 +6,11 @@ const path = require("path");
 const cors = require("cors");
 
 const app = express();
-app.use(cors());
+app.use(cors({
+  origin: "*",
+  methods: ["GET", "POST"],
+  allowedHeaders: ["Content-Type"]
+}));
 app.use(express.json());
 
 // ---------- DATA PATHS ----------
@@ -34,6 +38,7 @@ const numeric = v => /^\d+$/.test(v);
 
 // Login / Register student (only once)
 app.post("/api/student/login", (req, res) => {
+  
   console.log("LOGIN BODY:", req.body);
 
   const { name, father, roll, className, phone } = req.body;
@@ -188,5 +193,5 @@ app.get("/api/admin/results", (req, res) => {
 
 // ========================================================
 app.listen(3000, () => {
-  console.log("Server running at http://localhost:3000");
+  console.log("Server running at https://exam-backend-1-0tmx.onrender.com");
 });
