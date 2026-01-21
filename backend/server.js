@@ -10,7 +10,7 @@ app.use(cors());
 app.use(express.json());
 
 // ---------- DATA PATHS ----------
-const DATA_DIR = path.join(__dirname, "data");
+const DATA_DIR = path.join(__dirname, "./data");
 const STUDENTS = path.join(DATA_DIR, "students.json");
 const TESTS = path.join(DATA_DIR, "tests.json");
 const ATTEMPTS = path.join(DATA_DIR, "attempts.json");
@@ -34,6 +34,8 @@ const numeric = v => /^\d+$/.test(v);
 
 // Login / Register student (only once)
 app.post("/api/student/login", (req, res) => {
+  console.log("LOGIN BODY:", req.body);
+
   const { name, father, roll, className, phone } = req.body;
 
   if (!name || !father || !roll || !className || !phone)
